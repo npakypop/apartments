@@ -21,22 +21,22 @@ function ApartList({ apartments }) {
   const filteredApartments = getFilteredApartments();
   console.log("ApartList ~ filteredApartments", filteredApartments);
 
-  // const sortedApartments = filteredApartments.slice.sort((a, b) => {
-  //   if (sort === "inc") {
-  //     return a.price - b.price;
-  //   } else if (sort === "dec") {
-  //     return b.price - a.price;
-  //   } else {
-  //     return apartments;
-  //   }
-  // });
+  const sortedApartments = [...filteredApartments].sort((a, b) => {
+    if (sort === "inc") {
+      return a.price - b.price;
+    } else if (sort === "dec") {
+      return b.price - a.price;
+    } else {
+      return apartments;
+    }
+  });
 
   return (
     <>
       <h2>Here must be a list of avaliable apartments</h2>
       <PriceSort />
       <ul>
-        {filteredApartments.map((item) => (
+        {sortedApartments.map((item) => (
           <li key={item.id}>
             <Apartment item={item} onDeleteApartment={onDeleteApartment} />
           </li>

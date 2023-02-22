@@ -12,6 +12,7 @@ function Apartment({ item, onDeleteApartment }) {
       <button type="button" onClick={() => onDeleteApartment(item.id)}>
         ❌
       </button>
+      <button type="button">⭐</button>
     </div>
   );
 }
