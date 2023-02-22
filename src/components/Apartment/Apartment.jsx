@@ -1,7 +1,4 @@
-import React from "react";
-
-function Apartment({ item }) {
-  console.log(item);
+function Apartment({ item, onDeleteApartment }) {
   return (
     <div style={{ border: "1px solid grey", marginBottom: 20 }}>
       <h3>{item.name}</h3>
@@ -12,6 +9,9 @@ function Apartment({ item }) {
         <strong> Price:</strong> {item.price}
       </p>
       <p>{item.description}</p>
+      <button type="button" onClick={() => onDeleteApartment(item.id)}>
+        ❌
+      </button>
     </div>
   );
 }

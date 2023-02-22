@@ -1,15 +1,12 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import { apartmentsReducer } from "./apartmentsSlice/apartmentsSlice";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { apartmentsReducer } from "./apartments/apartmentsSlice";
+import { filterReducer } from "./filter/filterSlice";
 
-// const rootReducer = combineReducers({
-//   apartments: apartmentsReducer,
-//   //   filter: filterReducer,
-// });
-
-// export const store = configureStore({
-//   reducer: rootReducer,
-// });
+const rootReducer = combineReducers({
+  apart: apartmentsReducer,
+  filter: filterReducer,
+});
 
 export const store = configureStore({
-  reducer: apartmentsReducer,
+  reducer: rootReducer,
 });

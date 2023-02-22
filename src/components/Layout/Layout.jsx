@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { fetchApartments } from "redux/api";
+import { fetchApartments } from "redux/apartments/api";
 
 function Layout({ children }) {
   fetchApartments();
