@@ -8,7 +8,6 @@ export const fetchApartments = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get("/apartments/");
-      console.log(response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -33,7 +32,6 @@ export const deleteApartment = createAsyncThunk(
   async (apartmentId, thunkAPI) => {
     try {
       const response = await axios.delete(`/apartments/${apartmentId}`);
-      console.log(response.data);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

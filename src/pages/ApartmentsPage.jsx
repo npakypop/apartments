@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectApartments } from "redux/apartments/selectors";
 import { fetchApartments } from "redux/apartments/api";
 import Filter from "components/Filter/Filter";
+import PriceSort from "components/PriceSort/PriceSort";
 
 function ApartmentsPage() {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ function ApartmentsPage() {
       <p>Number of avaliable apartments at the time {apartments.length}</p>
       <AddForm />
       <Filter />
+
       <ApartList apartments={apartments} />
     </div>
   );
