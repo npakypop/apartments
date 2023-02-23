@@ -2,6 +2,7 @@ import Layout from "components/Layout/Layout";
 import ApartmentsPage from "pages/ApartmentsPage";
 import LoginPage from "pages/LoginPage";
 import SignupPage from "pages/SignupPage";
+import { useState } from "react";
 import { Route, Routes } from "react-router";
 
 function App() {
