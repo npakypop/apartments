@@ -7,8 +7,6 @@ import { setDoc, doc } from "firebase/firestore";
 import { db } from "firebase.config";
 import { useDispatch } from "react-redux";
 import { setUser } from "redux/auth/authSlice";
-// import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-// import { storage } from "firebase.config";
 
 function SignUp() {
   const dispatch = useDispatch();

@@ -1,11 +1,11 @@
-import { auth } from "firebase.config";
-import { signOut } from "firebase/auth";
+// import { auth } from "firebase.config";
+// import { signOut } from "firebase/auth";
 
-export const logout = async () => {
-  try {
-    await signOut(auth);
-    console.log("out");
-  } catch (error) {
-    console.log(error.message);
-  }
-};
+// export const logout = async () => {
+//   try {
+//     await signOut(auth);
+//     console.log("out");
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// };

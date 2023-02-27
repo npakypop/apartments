@@ -23,7 +23,10 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
     },
     removeUser: (state) => {
-      state.currentUser = null;
+      state.email = null;
+      state.token = null;
+      state.id = null;
+      state.userName = "";
       state.isLoggedIn = false;
     },
   },
