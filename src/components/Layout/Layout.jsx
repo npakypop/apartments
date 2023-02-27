@@ -1,11 +1,14 @@
-import { onAuthStateChanged, signOut } from "firebase/auth";
-import { useState } from "react";
+// import { onAuthStateChanged, signOut } from "firebase/auth";
+// import { useState } from "react";
+// import { fetchApartments } from "redux/apartments/api";
+// import { selectToken } from "redux/auth/selectors";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { fetchApartments } from "redux/apartments/api";
 import { logout } from "redux/auth/authOperations";
-import { selectToken } from "redux/auth/selectors";
+import { selectIsLoggedIn } from "redux/auth/selectors";
 
 function Layout({ children }) {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const onLogOut = () => {
     logout();
   };
@@ -24,7 +27,7 @@ function Layout({ children }) {
         <button onClick={onLogOut}>log out</button>
       </nav>
       <p>---------------------------Content-----------------------------</p>
-
+      {isLoggedIn && <h1>hello my sweety</h1>}
       <div>{children}</div>
     </div>
   );

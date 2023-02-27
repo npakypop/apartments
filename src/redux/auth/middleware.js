@@ -1,18 +1,18 @@
 // import { getAuth } from "firebase/auth";
-// import { setCurrentUser } from "./authSlice";
+// import { setUser } from "./authSlice";
 
 // export const watchAuthState = () => (dispatch) => {
 //   const auth = getAuth();
 //   auth.onAuthStateChanged((user) => {
 //     if (user) {
 //       dispatch(
-//         setCurrentUser({
+//         setUser({
 //           uid: user.uid,
 //           email: user.email,
 //         })
 //       );
 //     } else {
-//       dispatch(setCurrentUser(null));
+//       dispatch(setUser(null));
 //     }
 //   });
 // };

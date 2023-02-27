@@ -3,12 +3,16 @@ import { auth } from "firebase.config";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import React from "react";
 import { Link } from "react-router-dom";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { storage } from "firebase.config";
-import { setDoc, doc, addDoc, collection } from "firebase/firestore";
+import { setDoc, doc } from "firebase/firestore";
 import { db } from "firebase.config";
+import { useDispatch } from "react-redux";
+import { setUser } from "redux/auth/authSlice";
+// import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+// import { storage } from "firebase.config";
 
 function SignUp() {
+  const dispatch = useDispatch();
+
   const register = async (data) => {
     try {
       const userCredentials = await createUserWithEmailAndPassword(
@@ -17,34 +21,22 @@ function SignUp() {
         data.password
       );
       const user = userCredentials.user;
-      const storageRef = ref(storage, `images/${data.email}`);
-      const uploadTask = uploadBytesResumable(storageRef, data.file);
-
-      uploadTask.on(
-        (error) => {
-          alert(error.message);
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-            //upd user profile
-            await updateProfile(user, {
-              displayName: data.username,
-              photoURL: downloadURL,
-            });
-            //store user data in firestore database
-            // const dbuser = await addDoc(collection(db, "users", user.uid), {
-            const dbuser = await setDoc(doc(db, "users", user.uid), {
-              uid: user.uid,
-              displayNmae: data.username,
-              email: data.email,
-              photoURL: downloadURL,
-            });
-            console.log("dbuser", dbuser);
-          });
-        }
+      await updateProfile(user, {
+        displayName: data.username,
+      });
+      await setDoc(doc(db, "users", user.uid), {
+        uid: user.uid,
+        displayName: data.username,
+        email: data.email,
+      });
+      dispatch(
+        setUser({
+          email: user.email,
+          id: user.uid,
+          token: user.accessToken,
+          userName: user.displayName,
+        })
       );
-      console.log("user", user);
-      //   return userCredentials.user;
     } catch (error) {
       alert("something went wrong");
       console.log(error.message);
@@ -59,13 +51,11 @@ function SignUp() {
       email: form.elements.email.value,
       password: form.elements.password.value,
       username: form.elements.username.value,
-      file: form.elements.file.files[0],
     };
-    console.log(data.username);
-    console.log(data.file);
     register(data);
     form.reset();
   };
+
   return (
     <div>
       <Form title="signup" onClick={onSignUp} />
@@ -77,3 +67,30 @@ function SignUp() {
 }
 
 export default SignUp;
+
+//! код ниже для того что бы еще загружать в профиль фотографию при регистрации
+//   const storageRef = ref(storage, `images/${data.username}`);
+//   const uploadTask = uploadBytesResumable(storageRef, data.file);
+
+//   uploadTask.on(
+//     (error) => {
+//       console.log(error.message);
+//       alert(error.message);
+//     },
+//     () => {
+//       getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+//         //upd user profile
+//         await updateProfile(user, {
+//           displayName: data.username,
+//           photoURL: downloadURL,
+//         });
+//         //store user data in firestore database
+//         await setDoc(doc(db, "users", user.uid), {
+//           uid: user.uid,
+//           displayNmae: data.username,
+//           email: data.email,
+//         //   photoURL: downloadURL,
+//         });
+//       });
+//     }
+//   );

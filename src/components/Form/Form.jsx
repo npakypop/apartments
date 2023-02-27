@@ -11,10 +11,7 @@ function Form({ title, onClick }) {
         required
       />
       {title === "signup" && (
-        <>
-          <input type="text" name="username" placeholder="Your name" required />
-          <input type="file" name="file" />
-        </>
+        <input type="text" name="username" placeholder="Your name" required />
       )}
       <br />
       <input type="checkbox" name="agreement" value="agreement" />
