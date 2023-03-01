@@ -1,34 +1,42 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { login, logout, refresh, register } from "./authOperations";
+import { checkAuthState } from "./operations";
 
 const initialState = {
-  // currentUser: null,
-  email: null,
   token: null,
-  id: null,
   userName: "",
   isLoggedIn: false,
-  isRefreshing: false,
+  isLoading: false,
 };
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setUser: (state, action) => {
-      state.email = action.payload.email;
-      state.token = action.payload.token;
-      state.id = action.payload.id;
-      state.userName = action.payload.userName;
+    setUser: (state, { payload }) => {
+      state.token = payload.token;
+      state.userName = payload.userName;
       state.isLoggedIn = true;
     },
     removeUser: (state) => {
-      state.email = null;
       state.token = null;
-      state.id = null;
       state.userName = "";
       state.isLoggedIn = false;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(checkAuthState.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(checkAuthState.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.isLoggedIn = payload.isLoggedIn;
+        state.token = payload.token;
+        state.userName = payload.userName;
+      })
+      .addCase(checkAuthState.rejected, (state, payload) => {
+        state.isLoading = payload.isLoading;
+      });
   },
 });
 

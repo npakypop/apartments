@@ -1,15 +1,17 @@
 import Form from "components/Form/Form";
 import { auth } from "firebase.config";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { setDoc, doc } from "firebase/firestore";
 import { db } from "firebase.config";
 import { useDispatch } from "react-redux";
 import { setUser } from "redux/auth/authSlice";
 
 function SignUp() {
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const register = async (data) => {
     try {
@@ -29,13 +31,14 @@ function SignUp() {
       });
       dispatch(
         setUser({
-          email: user.email,
-          id: user.uid,
           token: user.accessToken,
           userName: user.displayName,
         })
       );
+      setIsLoading(false);
+      navigate("/");
     } catch (error) {
+      setIsLoading(false);
       alert("something went wrong");
       console.log(error.message);
     }
@@ -43,7 +46,7 @@ function SignUp() {
 
   const onSignUp = (event) => {
     event.preventDefault();
-    //   isLoading(true)
+    setIsLoading(true);
     const form = event.currentTarget;
     const data = {
       email: form.elements.email.value,
@@ -54,7 +57,9 @@ function SignUp() {
     form.reset();
   };
 
-  return (
+  return isLoading ? (
+    <h2>loading....</h2>
+  ) : (
     <div>
       <Form title="signup" onClick={onSignUp} />
       <p>

@@ -1,12 +1,18 @@
 import Form from "components/Form/Form";
 import { auth } from "firebase.config";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { setUser } from "redux/auth/authSlice";
+import { selectIsLoggedIn } from "redux/auth/selectors";
 
 function LogIn() {
+  const [isLoading, setIsLoading] = useState(false);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const login = async (data) => {
     try {
       const userCredentials = await signInWithEmailAndPassword(
@@ -18,19 +24,22 @@ function LogIn() {
       console.log(user);
       dispatch(
         setUser({
-          email: user.email,
-          id: user.uid,
-          token: user.accessToken,
           userName: user.displayName,
+          token: user.accessToken,
         })
       );
+      console.log(user.email);
+      setIsLoading(false);
+      navigate("/");
     } catch (error) {
+      setIsLoading(false);
       console.log(error.message);
     }
   };
 
   const onLogin = (event) => {
     event.preventDefault();
+    setIsLoading(true);
     const form = event.currentTarget;
     const data = {
       email: form.elements.email.value,
@@ -39,7 +48,14 @@ function LogIn() {
     login(data);
     form.reset();
   };
-  return (
+
+  if (isLoggedIn) {
+    return <Navigate to="/" replace={true} />;
+  }
+
+  return isLoading ? (
+    <h2>loading....</h2>
+  ) : (
     <div>
       <Form title="login" onClick={onLogin} />
       <p>
