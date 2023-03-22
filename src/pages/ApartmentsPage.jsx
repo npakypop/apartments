@@ -7,6 +7,7 @@ import { fetchApartments } from "redux/apartments/api";
 import Filter from "components/Filter/Filter";
 import { Navigate } from "react-router";
 import { useAuth } from "hooks/useAuth";
+import { Box, Container, Typography } from "@mui/material";
 
 function ApartmentsPage() {
   const dispatch = useDispatch();
@@ -22,13 +23,19 @@ function ApartmentsPage() {
   }
 
   return (
-    <div>
-      <h2>Apartments page</h2>
-      <p>Number of avaliable apartments at the time {apartments.length}</p>
-      <AddForm />
-      <Filter />
-      <ApartList apartments={apartments} />
-    </div>
+    <Box component="section">
+      <Container maxWidth="lg">
+        <Typography variant="h4" color="info">
+          Apartments page
+        </Typography>
+        <Typography component="p">
+          Number of avaliable apartments at the time {apartments.length}
+        </Typography>
+        <AddForm />
+        <Filter />
+        <ApartList apartments={apartments} />
+      </Container>
+    </Box>
   );
 }
 

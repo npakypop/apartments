@@ -7,6 +7,7 @@ import { setDoc, doc } from "firebase/firestore";
 import { db } from "firebase.config";
 import { useDispatch } from "react-redux";
 import { setUser } from "redux/auth/authSlice";
+import { Box, Typography } from "@mui/material";
 
 function SignUp() {
   const [isLoading, setIsLoading] = useState(false);
@@ -60,12 +61,26 @@ function SignUp() {
   return isLoading ? (
     <h2>loading....</h2>
   ) : (
-    <div>
+    <Box
+      sx={{
+        backgroundColor: "#ffffff",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "20px",
+        p: "40px",
+
+        borderRadius: 1,
+      }}
+    >
+      <Typography variant="subtitle" component="h2">
+        Sign Up
+      </Typography>
       <Form title="signup" onClick={onSignUp} />
       <p>
         Already have an account? <Link to="/login">Log in</Link>
       </p>
-    </div>
+    </Box>
   );
 }
 

@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectApartments } from "redux/apartments/selectors";
 import { nanoid } from "nanoid";
 import { addApartment } from "redux/apartments/api";
+import { Button, TextField } from "@mui/material";
+
 
 function AddForm() {
   const dispatch = useDispatch();
@@ -75,15 +77,17 @@ function AddForm() {
       validateOnBlur={false}
     >
       <Form>
-        <Field type="text" placeholder="name" name="name" />
+        <Field type="text" label="name" name="name" />
         <FormError name="name" />
-        <Field type="number" placeholder="rooms" name="rooms" />
+        <Field type="text" label="rooms" name="rooms" />
         <FormError name="rooms" />
-        <Field type="number" placeholder="price" name="price" />
+        <Field type="text" label="price" name="price" />
         <FormError name="price" />
-        <Field type="text" placeholder="description" name="description" />
+        <Field type="text" label="description" name="description" />
         <FormError name="description" />
-        <button type="submit">add apartment</button>
+        <Button sx={{ borderRadius: 1 }} type="submit">
+          add apartment
+        </Button>
       </Form>
     </Formik>
   );
