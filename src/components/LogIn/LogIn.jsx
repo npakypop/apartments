@@ -1,3 +1,4 @@
+import { Box, Typography } from "@mui/material";
 import Form from "components/Form/Form";
 import { auth } from "firebase.config";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -56,12 +57,29 @@ function LogIn() {
   return isLoading ? (
     <h2>loading....</h2>
   ) : (
-    <div>
+    <Box
+      sx={{
+        backgroundColor: "#ffffff",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "20px",
+        p: "40px",
+
+        borderRadius: 1,
+      }}
+    >
+      <Typography variant="subtitle" component="h2">
+        Log In
+      </Typography>
+      <Typography variant="body" component="p">
+        Fill in your log in details below.
+      </Typography>
       <Form title="login" onClick={onLogin} />
-      <p>
+      <Typography component="p">
         Don't have an account? <Link to="/register">Sign up</Link>
-      </p>
-    </div>
+      </Typography>
+    </Box>
   );
 }
 
