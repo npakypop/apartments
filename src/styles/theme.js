@@ -13,7 +13,7 @@ const theme = createTheme({
     },
   },
   shape: {
-    borderRadius: 10,
+    borderRadius: 5,
   },
   typography: {
     title: {

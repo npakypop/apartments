@@ -1,4 +1,7 @@
+import { Typography } from "@mui/material";
 import Apartment from "components/Apartment/Apartment";
+import GridItem from "components/Grid";
+import Body from "components/GridList";
 import PriceSort from "components/PriceSort/PriceSort";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteApartment } from "redux/apartments/api";
@@ -33,7 +36,12 @@ function ApartList({ apartments }) {
 
   return (
     <>
-      <h2>Here must be a list of avaliable apartments</h2>
+      {/* <GridItem /> */}
+      {/* <Body /> */}
+
+      <Typography variant="subtitle" component="h2" sx={{ mb: "20px" }}>
+        Here must be a list of avaliable apartments
+      </Typography>
       <PriceSort />
       <ul>
         {sortedApartments.map((item) => (
