@@ -65,7 +65,6 @@ function LogIn() {
         alignItems: "center",
         gap: "20px",
         p: "40px",
-
         borderRadius: 1,
       }}
     >

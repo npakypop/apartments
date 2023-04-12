@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectApartments } from "redux/apartments/selectors";
 import { nanoid } from "nanoid";
 import { addApartment } from "redux/apartments/api";
-import { Button, TextField } from "@mui/material";
-
+import { Button, TextField, Typography } from "@mui/material";
 
 function AddForm() {
   const dispatch = useDispatch();
@@ -69,27 +68,69 @@ function AddForm() {
   };
 
   return (
-    <Formik
-      initialValues={initValues}
-      validationSchema={apartSchema}
-      onSubmit={handleSubmit}
-      validateOnChange={false}
-      validateOnBlur={false}
-    >
-      <Form>
-        <Field type="text" label="name" name="name" />
-        <FormError name="name" />
-        <Field type="text" label="rooms" name="rooms" />
-        <FormError name="rooms" />
-        <Field type="text" label="price" name="price" />
-        <FormError name="price" />
-        <Field type="text" label="description" name="description" />
-        <FormError name="description" />
-        <Button sx={{ borderRadius: 1 }} type="submit">
-          add apartment
-        </Button>
-      </Form>
-    </Formik>
+    <>
+      <Typography variant="subtitle" component="h2">
+        Add new apartment
+      </Typography>
+      <Formik
+        initialValues={initValues}
+        validationSchema={apartSchema}
+        onSubmit={handleSubmit}
+        validateOnChange={false}
+        validateOnBlur={false}
+      >
+        {/* <Form>
+          <TextField
+            component={Field}
+            size="small"
+            type="text"
+            label="name"
+            name="name"
+          />
+          <FormError name="name" />
+          <TextField
+            component={Field}
+            size="small"
+            type="text"
+            label="rooms"
+            name="rooms"
+          />
+          <FormError name="rooms" />
+          <TextField
+            component={Field}
+            size="small"
+            type="text"
+            label="price"
+            name="price"
+          />
+          <FormError name="price" />
+          <TextField
+            component={Field}
+            size="small"
+            type="text"
+            label="description"
+            name="description"
+          />
+          <FormError name="description" />
+          <Button sx={{ borderRadius: 1 }} type="submit">
+            add apartment
+          </Button>
+        </Form> */}
+        <Form>
+          <Field type="text" label="name" name="name" />
+          <FormError name="name" />
+          <Field type="text" label="rooms" name="rooms" />
+          <FormError name="rooms" />
+          <Field type="text" label="price" name="price" />
+          <FormError name="price" />
+          <Field type="text" label="description" name="description" />
+          <FormError name="description" />
+          <Button sx={{ borderRadius: 1 }} type="submit">
+            add apartment
+          </Button>
+        </Form>
+      </Formik>
+    </>
   );
 }
 

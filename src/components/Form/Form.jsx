@@ -1,4 +1,4 @@
-import { Button, TextField } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import React from "react";
 
 function Form({ title, onClick }) {
@@ -19,7 +19,7 @@ function Form({ title, onClick }) {
         required
       />
       {title === "signup" && (
-        <div>
+        <Box>
           <TextField
             fullWidth
             type="text"
@@ -27,12 +27,27 @@ function Form({ title, onClick }) {
             label="Your name"
             required
           />
-          <br />
-          <input type="checkbox" name="agreement" value="agreement" />
-          <p>I agree to this website's privacy policy and terms of service</p>
-        </div>
+          <Box
+            sx={{
+              display: "flex",
+              gap: "10px",
+              alignItems: "baseline",
+              mt: "20px",
+            }}
+          >
+            <input type="checkbox" name="agreement" value="agreement" />
+            <Typography component="p">
+              I agree to this website's privacy policy and terms of service
+            </Typography>
+          </Box>
+        </Box>
       )}
-      <Button sx={{ borderRadius: 1 }} type="submit" variant="contained">
+      <Button
+        sx={{ borderRadius: 1 }}
+        type="submit"
+        fullWidth
+        variant="contained"
+      >
         {title}
       </Button>
     </form>

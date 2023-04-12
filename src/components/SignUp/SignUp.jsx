@@ -77,9 +77,9 @@ function SignUp() {
         Sign Up
       </Typography>
       <Form title="signup" onClick={onSignUp} />
-      <p>
+      <Typography component="p">
         Already have an account? <Link to="/login">Log in</Link>
-      </p>
+      </Typography>
     </Box>
   );
 }
