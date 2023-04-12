@@ -1,12 +1,17 @@
 import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import AddForm from "components/AddForm/AddForm";
+import MyModal from "components/Modal/Modal";
 import { auth } from "firebase.config";
 import { signOut } from "firebase/auth";
 import { useAuth } from "hooks/useAuth";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { removeUser } from "redux/auth/authSlice";
 
 function Layout({ children }) {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
   const { userName, isLoggedIn } = useAuth();
   const dispatch = useDispatch();
 
@@ -52,12 +57,16 @@ function Layout({ children }) {
                 gap: 2,
               }}
             >
+              <Button onClick={handleOpen} variant="contained" color="primary">
+                Add apartment
+              </Button>
               <TextField label="Search" type="search" size="small" />
               <Typography color="primary">WELKOM {userName}</Typography>
               <Button variant="contained" onClick={onLogOut} color="primary">
                 log out
               </Button>
             </Box>
+            <MyModal open={open} setOpen={setOpen} />
           </>
         ) : (
           <Box

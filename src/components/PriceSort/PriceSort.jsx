@@ -13,7 +13,7 @@ function PriceSort({ apartments }) {
 
   return (
     <>
-      <FormControl sx={{ minWidth: 200, mb: "30px" }}>
+      <FormControl size="small" sx={{ minWidth: 200, mb: "30px" }}>
         <Select
           value={sort}
           onChange={handleChange}
