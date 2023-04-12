@@ -29,9 +29,9 @@ function HomePage() {
             The best resources and books from around the web, collected and
             curated for your reading.
           </Typography>
-          <Button component={NavLink} to="./login" variant="contained">
+          {/* <Button component={NavLink} to="./login" variant="contained">
             Log in
-          </Button>
+          </Button> */}
         </Box>
         <Box component={Icon} width={350} height={350} />
       </Container>

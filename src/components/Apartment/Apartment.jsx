@@ -32,7 +32,8 @@ function Apartment({ item, onDeleteApartment }) {
         <Typography
           component="p"
           color="primary"
-          sx={{ height: "150px", overflowY: "auto" }}
+          className="overflow"
+          sx={{ height: "150px", overflow: "auto" }}
         >
           {item.description}
         </Typography>
