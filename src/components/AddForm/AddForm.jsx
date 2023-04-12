@@ -4,24 +4,28 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectApartments } from "redux/apartments/selectors";
 import { nanoid } from "nanoid";
 import { addApartment } from "redux/apartments/api";
-import { Button, TextField, Typography } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 
-function AddForm() {
+function AddForm({ handleClose }) {
   const dispatch = useDispatch();
   const apartments = useSelector(selectApartments);
 
-  // const FormError = ({ name }) => {
-  //   return (
-  //     <Field name={name}>
-  //       {({ meta }) =>
-  //         meta.touched && meta.error ? <div>{meta.error}</div> : null
-  //       }
-  //     </Field>
-  //   );
-  // };
-
   const FormError = ({ name }) => {
-    return <ErrorMessage name={name} render={(message) => <p>{message}</p>} />;
+    return (
+      <ErrorMessage
+        name={name}
+        render={(message) => (
+          <Typography
+            sx={{
+              color: "red",
+              fontSize: "12px",
+            }}
+          >
+            {message}
+          </Typography>
+        )}
+      />
+    );
   };
 
   const initValues = {
@@ -59,12 +63,13 @@ function AddForm() {
     const apartment = {
       name: values.name,
       price: values.price,
-      rooms: values.rooms,
+      rooms: Number(values.rooms),
       description: values.description,
       id: nanoid(),
     };
     dispatch(addApartment(apartment));
     resetForm();
+    handleClose();
   };
 
   return (
@@ -79,55 +84,62 @@ function AddForm() {
         validateOnChange={false}
         validateOnBlur={false}
       >
-        {/* <Form>
-          <TextField
-            component={Field}
-            size="small"
-            type="text"
-            label="name"
-            name="name"
-          />
-          <FormError name="name" />
-          <TextField
-            component={Field}
-            size="small"
-            type="text"
-            label="rooms"
-            name="rooms"
-          />
-          <FormError name="rooms" />
-          <TextField
-            component={Field}
-            size="small"
-            type="text"
-            label="price"
-            name="price"
-          />
-          <FormError name="price" />
-          <TextField
-            component={Field}
-            size="small"
-            type="text"
-            label="description"
-            name="description"
-          />
-          <FormError name="description" />
-          <Button sx={{ borderRadius: 1 }} type="submit">
-            add apartment
-          </Button>
-        </Form> */}
         <Form>
-          <Field type="text" label="name" name="name" />
-          <FormError name="name" />
-          <Field type="text" label="rooms" name="rooms" />
-          <FormError name="rooms" />
-          <Field type="text" label="price" name="price" />
-          <FormError name="price" />
-          <Field type="text" label="description" name="description" />
-          <FormError name="description" />
-          <Button sx={{ borderRadius: 1 }} type="submit">
-            add apartment
-          </Button>
+          <Box
+            sx={{
+              width: "300px",
+              display: "inline-flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "30px",
+              justifyCoontent: "center",
+            }}
+          >
+            <Field
+              as={TextField}
+              size="small"
+              type="text"
+              label="name"
+              name="name"
+            />
+            <FormError name="name" />
+
+            <Field
+              as={TextField}
+              size="small"
+              type="text"
+              label="rooms"
+              name="rooms"
+            />
+            <FormError name="rooms" />
+
+            <Field
+              as={TextField}
+              size="small"
+              type="text"
+              label="price"
+              name="price"
+            />
+            <FormError name="price" />
+
+            <Field
+              as={TextField}
+              size="small"
+              type="text"
+              label="description"
+              name="description"
+            />
+            <FormError name="description" />
+
+            <Button
+              sx={{ borderRadius: 1 }}
+              type="submit"
+              variant="contained"
+              color="primary"
+            >
+              Add apartment
+            </Button>
+          </Box>
         </Form>
       </Formik>
     </>

@@ -1,4 +1,4 @@
-import { Box, TextField, Typography } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { filterApartments } from "redux/filter/filterSlice";
 import { selectFilter } from "redux/filter/selectors";
@@ -17,31 +17,16 @@ function Filter() {
   };
 
   return (
-    <Box component="div" sx={{ marginBottom: "30px" }}>
-      <Typography
-        variant="subtitle"
-        component="h2"
-        sx={{
-          marginBottom: "20px",
-        }}
-      >
-        Filter by Rooms
-      </Typography>
+    <Box sx={{ marginBottom: "30px" }}>
       <TextField
+        sx={{ width: "200px" }}
         type="text"
         size="small"
-        placeholder="rooms"
+        placeholder="Filter by rooms"
         name="rooms"
         onChange={(event) => changeFilter(event.target.value)}
         value={filterValue}
       />
-      {/* <input
-        type="number"
-        placeholder="rooms"
-        name="rooms"
-        onChange={(event) => changeFilter(event.target.value)}
-        value={filterValue}
-      /> */}
     </Box>
   );
 }
