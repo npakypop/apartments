@@ -4,7 +4,7 @@
 
 - React
 - Redux Toolkit
-- Matirial UI
+- Material UI
 - Formik
 - Yup(vlidation)
 - Firebase(auth and storage)
