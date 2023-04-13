@@ -59,7 +59,7 @@ function Layout({ children }) {
               <Button onClick={handleOpen} variant="contained" color="primary">
                 Add apartment
               </Button>
-              <TextField label="Search" type="search" size="small" />
+              {/* <TextField label="Search" type="search" size="small" /> */}
               <Typography color="primary">WELKOM {userName}</Typography>
               <Button variant="contained" onClick={onLogOut} color="primary">
                 log out
