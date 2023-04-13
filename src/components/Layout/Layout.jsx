@@ -1,5 +1,4 @@
 import { Box, Button, Container, TextField, Typography } from "@mui/material";
-import AddForm from "components/AddForm/AddForm";
 import MyModal from "components/Modal/Modal";
 import { auth } from "firebase.config";
 import { signOut } from "firebase/auth";
@@ -97,5 +96,3 @@ function Layout({ children }) {
 }
 
 export default Layout;
-
-// <Navigate to="/login" replace={true} />

@@ -1,34 +1,27 @@
-import AddForm from "components/AddForm/AddForm";
 import ApartList from "components/ApartList/ApartList";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectApartments } from "redux/apartments/selectors";
 import { deleteApartment, fetchApartments } from "redux/apartments/api";
 import Filter from "components/Filter/Filter";
 import { Navigate } from "react-router";
 import { useAuth } from "hooks/useAuth";
-import { Box, Button, Container, Typography } from "@mui/material";
-import MyModal from "components/Modal/Modal";
+import { Box, Container, Typography } from "@mui/material";
 import PriceSort from "components/PriceSort/PriceSort";
 import { selectFilter, selectSort } from "redux/filter/selectors";
 
 function ApartmentsPage() {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-
-  const dispatch = useDispatch();
+  // const [open, setOpen] = useState(false);
+  // const handleOpen = () => setOpen(true);
+  const filterValue = parseInt(useSelector(selectFilter));
   const apartments = useSelector(selectApartments);
-  console.log("apartments:", apartments);
+  const sort = useSelector(selectSort);
+  const dispatch = useDispatch();
   const { isLoggedIn } = useAuth();
 
   useEffect(() => {
     dispatch(fetchApartments());
   }, [dispatch]);
-
-  //=====================
-  const filterValue = parseInt(useSelector(selectFilter));
-  console.log("filterValue:", filterValue);
-  const sort = useSelector(selectSort);
 
   const onDeleteApartment = (apartId) => {
     dispatch(deleteApartment(apartId));
@@ -41,7 +34,6 @@ function ApartmentsPage() {
   };
 
   const filteredApartments = getFilteredApartments();
-  console.log("filteredApartments:", filteredApartments);
 
   const sortedApartments = [...filteredApartments].sort((a, b) => {
     if (sort === "inc") {
@@ -52,7 +44,6 @@ function ApartmentsPage() {
       return apartments;
     }
   });
-  //=======================
 
   if (!isLoggedIn) {
     return <Navigate to="/login" replace={true} />;
@@ -61,14 +52,6 @@ function ApartmentsPage() {
   return (
     <Box component="section">
       <Container maxWidth="lg">
-        {/* <Typography variant="h4" color="info">
-          Apartments page
-        </Typography> */}
-        {/* <Button onClick={handleOpen} variant="contained" color="primary">
-          Add apartment
-        </Button> */}
-        {/* <AddForm /> */}
-        {/* <MyModal open={open} setOpen={setOpen} /> */}
         <Box
           sx={{
             display: "flex",
