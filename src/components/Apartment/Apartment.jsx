@@ -1,11 +1,9 @@
 import {
-  
   Button,
   Card,
   CardActions,
   CardContent,
   CardMedia,
-  
   Typography,
 } from "@mui/material";
 import Image from "./apartment.jpg";
@@ -35,6 +33,9 @@ function Apartment({ item, onDeleteApartment }) {
         >
           {item.description}
         </Typography>
+        <Typography gutterBottom variant="h5" component="span">
+          Price: {item.price}
+        </Typography>
       </CardContent>
       <CardActions>
         <Button
@@ -49,7 +50,6 @@ function Apartment({ item, onDeleteApartment }) {
         </Button>
       </CardActions>
     </Card>
-   
   );
 }
 
