@@ -22,14 +22,14 @@ function LogIn() {
         data.password
       );
       const user = userCredentials.user;
-      console.log(user);
+
       dispatch(
         setUser({
           userName: user.displayName,
           token: user.accessToken,
         })
       );
-      console.log(user.email);
+
       setIsLoading(false);
       navigate("/");
     } catch (error) {

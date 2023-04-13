@@ -27,11 +27,6 @@ function PriceSort({ apartments }) {
           <MenuItem value="dec">Highest to lowest</MenuItem>
         </Select>
       </FormControl>
-      {/* <select name="sort" value={sort} onChange={handleChange}>
-        <option value="">Sort By</option>
-        <option value="inc">lowest to highest</option>
-        <option value="dec">highest to lowest</option>
-      </select> */}
     </>
   );
 }

@@ -1,6 +1,6 @@
 import { Box, ButtonBase, Grid, Paper, styled, Typography } from "@mui/material";
 import axios from "axios";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Img = styled("img")({
   width: "320px",
@@ -9,9 +9,9 @@ const Img = styled("img")({
 });
 
 export default function GridItem() {
-  const [link, setLink] = React.useState("");
+  const [link, setLink] = useState("");
 
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchLink = async () => {
       const response = await axios("https://picsum.photos/600/300");
       setLink(response.request.responseURL);

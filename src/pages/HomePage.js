@@ -1,5 +1,4 @@
-import { Box, Button, Container, Typography } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { Box, Container, Typography } from "@mui/material";
 import { ReactComponent as Icon } from "../images/library.svg";
 
 function HomePage() {
@@ -29,9 +28,6 @@ function HomePage() {
             The best resources and books from around the web, collected and
             curated for your reading.
           </Typography>
-          {/* <Button component={NavLink} to="./login" variant="contained">
-            Log in
-          </Button> */}
         </Box>
         <Box component={Icon} width={350} height={350} />
       </Container>

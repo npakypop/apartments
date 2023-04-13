@@ -86,7 +86,7 @@ function SignUp() {
 
 export default SignUp;
 
-//! код ниже для того что бы еще загружать в профиль фотографию при регистрации
+//! код ниже для того что бы  загружать в профиль фотографию при регистрации
 //   const storageRef = ref(storage, `images/${data.username}`);
 //   const uploadTask = uploadBytesResumable(storageRef, data.file);
 
