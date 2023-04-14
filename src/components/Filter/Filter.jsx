@@ -20,7 +20,7 @@ function Filter() {
     <Box sx={{ marginBottom: "30px" }}>
       <TextField
         sx={{ width: "200px" }}
-        type="text"
+        type="number"
         size="small"
         placeholder="Filter by rooms"
         name="rooms"

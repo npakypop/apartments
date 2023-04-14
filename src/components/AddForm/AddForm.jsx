@@ -63,7 +63,7 @@ function AddForm({ handleClose }) {
     const apartment = {
       name: values.name,
       price: values.price,
-      rooms: Number(values.rooms),
+      rooms: values.rooms,
       description: values.description,
       id: nanoid(),
     };
@@ -107,7 +107,7 @@ function AddForm({ handleClose }) {
             <Field
               as={TextField}
               size="small"
-              type="text"
+              type="number"
               label="rooms"
               name="rooms"
             />
@@ -116,7 +116,7 @@ function AddForm({ handleClose }) {
             <Field
               as={TextField}
               size="small"
-              type="text"
+              type="number"
               label="price"
               name="price"
             />
