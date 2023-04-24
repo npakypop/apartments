@@ -47,6 +47,9 @@ function Layout({ children }) {
               <Button component={NavLink} color="primary" to="./apartments">
                 Apartments
               </Button>
+              <Button component={NavLink} color="primary" to="./favorite">
+                Favorite
+              </Button>
             </nav>
             <Box
               sx={{

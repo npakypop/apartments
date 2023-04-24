@@ -29,11 +29,16 @@ function SignUp() {
         uid: user.uid,
         displayName: data.username,
         email: data.email,
+        apartments: {
+          favoriteApartments: [],
+          myApartments: [],
+        },
       });
       dispatch(
         setUser({
           token: user.accessToken,
           userName: user.displayName,
+          userID: user.uid,
         })
       );
       setIsLoading(false);

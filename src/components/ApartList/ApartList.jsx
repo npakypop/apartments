@@ -1,5 +1,8 @@
 import { Grid } from "@mui/material";
 import Apartment from "components/Apartment/Apartment";
+// import { useState } from "react";
+// import { useSelector } from "react-redux";
+// import { selectFavoriteApartments } from "redux/auth/selectors";
 
 function ApartList({ apartments, onDeleteApartment }) {
   return (

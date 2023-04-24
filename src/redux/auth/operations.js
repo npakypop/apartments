@@ -18,10 +18,12 @@ export const checkAuthState = createAsyncThunk(
           } else {
             unsubscribe();
             resolve({
+              userID: user.uid,
               userName: user.displayName,
               token: user.accessToken,
               isLoggedIn: true,
             });
+            console.log("user", user);
           }
         },
         (error) => {
