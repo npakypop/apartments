@@ -27,6 +27,8 @@ function LogIn() {
         setUser({
           userName: user.displayName,
           token: user.accessToken,
+          userID: user.uid,
+          apartments: user.apartments,
         })
       );
 

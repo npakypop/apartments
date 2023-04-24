@@ -2,6 +2,7 @@ import Layout from "components/Layout/Layout";
 
 import { useAuth } from "hooks/useAuth";
 import ApartmentsPage from "pages/ApartmentsPage";
+import FavoritePage from "pages/FavoritePage";
 import HomePage from "pages/HomePage";
 import LoginPage from "pages/LoginPage";
 import SignupPage from "pages/SignupPage";
@@ -27,6 +28,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/apartments" element={<ApartmentsPage />} />
+        <Route path="/favorite" element={<FavoritePage />} />
         <Route path="*" element={<HomePage />} />
       </Routes>
     </Layout>
