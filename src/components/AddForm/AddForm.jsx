@@ -124,6 +124,8 @@ function AddForm({ handleClose }) {
 
             <Field
               as={TextField}
+              multiline
+              rows={3}
               size="small"
               type="text"
               label="description"

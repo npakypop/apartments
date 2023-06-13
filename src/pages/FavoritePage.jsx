@@ -1,3 +1,4 @@
+import { Box, Container } from "@mui/material";
 import ApartList from "components/ApartList/ApartList";
 import { db } from "firebase.config";
 import { doc, getDoc } from "firebase/firestore";
@@ -40,16 +41,18 @@ const FavoritePage = () => {
   }, [apartments, userRef]);
 
   return (
-    <div>
-      {favoriteApartments.length > 0 ? (
-        <ApartList
-          apartments={favoriteApartments}
-          // onDeleteApartment={onDeleteApartment}
-        />
-      ) : (
-        <h2>There is nothing inside favorite</h2>
-      )}
-    </div>
+    <Box component="section">
+      <Container maxWidth="lg">
+        {favoriteApartments.length > 0 ? (
+          <ApartList
+            apartments={favoriteApartments}
+            // onDeleteApartment={onDeleteApartment}
+          />
+        ) : (
+          <h2>There is nothing inside favorite</h2>
+        )}
+      </Container>
+    </Box>
   );
 };
 
